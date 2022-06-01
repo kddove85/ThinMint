@@ -127,3 +127,12 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# PyCharm
+.idea/
+
+# Application Specific
+accounts.txt
+balance.xlsx
+creds.txt
+chromedriver.exe
