@@ -1,1 +1,1 @@
-# ThinMnt
+# ThinMint
