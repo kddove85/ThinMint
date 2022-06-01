@@ -3,6 +3,8 @@ from openpyxl import load_workbook
 import datetime
 import time
 
+ACCOUNTS_FILE = 'accounts.txt'
+BALANCE_FILE = 'Balance.xlsx'
 
 def read_file(file_name):
     with open(file_name) as f:
@@ -36,7 +38,7 @@ def create_mint_instance():
 
 
 def format_data(account_data):
-    accounts = read_file('accounts.txt')
+    accounts = read_file(ACCOUNTS_FILE)
     account_dict = {}
     # This preserves the order of the accounts as desired by the textfile 'accounts.txt'
     for account in accounts:
@@ -48,7 +50,7 @@ def format_data(account_data):
 
 
 def write_info_to_excel(data_dict):
-    work_book = load_workbook('Balance.xlsx')
+    work_book = load_workbook(BALANCE_FILE)
     work_sheet = work_book.active
     next_row = work_sheet.max_row + 1
     next_col = 1
@@ -63,7 +65,7 @@ def write_info_to_excel(data_dict):
         apply_formatting(work_sheet, [next_col], next_row, '$#,##0.00')
 
     try:
-        work_book.save('Balance.xlsx')
+        work_book.save(BALANCE_FILE)
     except PermissionError as e:
         print(f"{e.strerror}: It appears the Excel Workbook is open. Please Close before running the script.")
 
